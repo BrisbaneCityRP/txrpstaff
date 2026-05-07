@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Texas State Roleplay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Texas State Roleplay home">
+        <img src="TXRP.png" alt="">
+        <span>Texas State Roleplay</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <button class="nav-link active" type="button" data-tab="home">Home</button>
+        <button class="nav-link" type="button" data-tab="login">Login</button>
+        <button class="nav-link" type="button" data-tab="banAppeal">Ban Appeal</button>
+        <button class="nav-link" type="button" data-tab="applications">Applications</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="page active">
+        <section class="hero image-hero">
+        </section>
+
+        <section class="about-image">
+          <div class="about-box">
+            <p class="section-label">About Us</p>
+            <h2>Texas State Roleplay</h2>
+            <p>
+              Texas State Roleplay aims to provide high quality roleplay for all
+              users through professional standards, active staff support, and a
+              welcoming environment for new and experienced members.
+            </p>
+          </div>
+        </section>
+
+        <section class="discord-section">
+          <div class="discord-box">
+            <h2>Join Discord!</h2>
+            <p>Click our logo below to join the discord!</p>
+            <a class="discord-logo" href="https://discord.gg/mEXZPnjm5D" target="_blank" rel="noopener">
+              <img src="TXRP.png" alt="Join the Texas State Roleplay Discord">
+            </a>
+          </div>
+        </section>
+
+        <section class="bottom-cta">
+          <p>You've reached the bottom!</p>
+          <div class="cta-actions">
+            <button class="button primary" type="button" data-tab="applications">Staff Application</button>
+            <button class="button secondary" type="button" data-tab="login">Login</button>
+          </div>
+          <small>Coded by Wildhog1lgt All Rights Reserved</small>
+        </section>
+      </section>
+
+      <section id="login" class="page">
+        <section class="login-layout">
+          <div class="login-intro">
+            <p class="section-label">Portal Access</p>
+            <h1>Login</h1>
+            <p>Choose your portal type and sign in to view the tools available to your role.</p>
+          </div>
+
+          <form id="loginForm" class="panel login-panel">
+            <label>
+              Login Type
+              <select id="loginRole">
+                <option value="owner">Owner</option>
+                <option value="management">Management</option>
+                <option value="staff">Staff</option>
+              </select>
+            </label>
+            <label>
+              Username
+              <input id="loginUsername" type="text" autocomplete="username" required>
+            </label>
+            <label>
+              Password
+              <input id="loginPassword" type="password" autocomplete="current-password" required>
+            </label>
+            <button class="button primary full" type="submit">Login</button>
+            <p id="loginStatus" class="form-note"></p>
+          </form>
+        </section>
+
+        <section id="portal" class="portal hidden">
+          <div class="portal-head">
+            <div>
+              <p class="section-label">Logged In</p>
+              <h2 id="portalTitle">Portal</h2>
+            </div>
+            <button id="logoutButton" class="button secondary" type="button">Logout</button>
+          </div>
+
+          <div id="ownerTools" class="role-tools hidden">
+            <section class="panel">
+              <h3>Create Management or Staff Login</h3>
+              <form id="createAccountForm" class="grid-form">
+                <label>
+                  Role
+                  <select id="newAccountRole">
+                    <option value="owner">Owner</option>
+                    <option value="management">Management</option>
+                    <option value="staff">Staff</option>
+                  </select>
+                </label>
+                <label>
+                  Username
+                  <input id="newAccountUsername" type="text" required>
+                </label>
+                <label>
+                  Password
+                  <input id="newAccountPassword" type="text" required>
+                </label>
+                <button class="button primary" type="submit">Create Login</button>
+              </form>
+            </section>
+
+            <section class="panel">
+              <h3>Delete Account</h3>
+              <form id="deleteAccountForm" class="grid-form">
+                <label>
+                  Select Account
+                  <select id="deleteAccountId"></select>
+                </label>
+                <button class="button secondary" type="submit">Delete Account</button>
+              </form>
+            </section>
+          </div>
+
+          <div id="managementTools" class="role-tools hidden">
+            <section class="panel">
+              <div class="section-row">
+                <div>
+                  <h3>Staff Roster</h3>
+                  <p class="form-note">Update each session in its own box.</p>
+                </div>
+                <button id="saveRosterButton" class="button primary" type="button">Update Roster</button>
+                <button id="resetRosterButton" class="button secondary" type="button">Reset Roster</button>
+              </div>
+              <div id="rosterEditor" class="roster-grid"></div>
+            </section>
+          </div>
+
+          <div id="staffTools" class="role-tools hidden">
+            <section class="panel">
+              <h3>My Shift</h3>
+              <div class="staff-actions">
+                <button id="unavailableButton" class="button secondary" type="button">Mark unavailable for my shift</button>
+                <button id="startSessionButton" class="button primary" type="button">Start Session</button>
+                <button id="signInButton" class="button primary" type="button">Sign in for shift</button>
+                <button id="signOutButton" class="button secondary hidden" type="button">Sign out from shift</button>
+                <button id="endSessionButton" class="button secondary" type="button">End Session</button>
+              </div>
+            </section>
+
+            <section class="panel">
+              <h3>Log Overtime</h3>
+              <form id="overtimeForm" class="grid-form">
+                <label>
+                  Reason
+                  <input id="overtimeReason" type="text" required>
+                </label>
+                <label>
+                  Time In
+                  <input id="overtimeIn" type="time" required>
+                </label>
+                <label>
+                  Time Out
+                  <input id="overtimeOut" type="time" required>
+                </label>
+                <button class="button primary" type="submit">Submit Overtime</button>
+              </form>
+            </section>
+          </div>
+
+          <section class="panel">
+            <h3>Roster</h3>
+            <div id="rosterView" class="roster-view"></div>
+          </section>
+
+          <section class="panel">
+            <h3>Messages & Notices</h3>
+            <form id="messageForm" class="message-form">
+              <label>
+                Send To
+                <select id="messageRecipient"></select>
+              </label>
+              <label>
+                Message
+                <textarea id="messageBody" rows="3" required></textarea>
+              </label>
+              <button class="button primary" type="submit">Send Message</button>
+            </form>
+            <div id="inboxList" class="list"></div>
+          </section>
+
+          <section id="requestsPanel" class="panel hidden">
+            <h3>Management Inbox</h3>
+            <div id="requestsList" class="list"></div>
+          </section>
+
+          <section id="reviewPanel" class="panel hidden">
+            <h3>Applications & Ban Appeals</h3>
+            <div id="reviewList" class="list"></div>
+          </section>
+
+        </section>
+      </section>
+
+      <section id="banAppeal" class="page">
+        <section class="application-content">
+          <div id="banAppealStart" class="panel application-form">
+            <h1>Ban Appeal</h1>
+            <button id="startAppealButton" class="button primary" type="button">Start Appeal</button>
+          </div>
+          <form id="banAppealForm" class="panel application-form hidden">
+            <h1>Start Ban Appeal</h1>
+            <label>Q1: Roblox name <input name="robloxName" type="text" required></label>
+            <label>Q2: Discord username <input name="discordName" type="text" required></label>
+            <label>Q3: Reason for ban <textarea name="banReason" rows="4" required></textarea></label>
+            <label>Q4: Reason for appeal <textarea name="appealReason" rows="4" required></textarea></label>
+            <label>Q5: Upload Evidence files</label>
+            <input id="banEvidence" name="evidence" type="file" multiple class="hidden">
+            <button id="banEvidencePick" class="discord-logo" type="button">
+              <img src="TXRP.png" alt="Upload evidence">
+            </button>
+            <p id="banEvidenceNames" class="form-note">No files selected.</p>
+            <button class="button primary" type="submit">Submit</button>
+          </form>
+        </section>
+      </section>
+
+      <section id="applications" class="page">
+        <section id="applicationLanding" class="application-content">
+          <div class="panel">
+            <h1>Applications</h1>
+            <h2>Thank you for checking our current applications!</h2>
+            <p class="open-status">Currently open: Moderation Staff Team <span class="status-dot" aria-label="open"></span></p>
+            <button id="openApplicationButton" class="button primary" type="button">Open application</button>
+          </div>
+        </section>
+
+        <section id="applicationIntro" class="application-content hidden">
+          <div class="panel">
+            <h2>Moderation Staff Team Application</h2>
+            <p>
+              Thank you for showing interest in the Texas State Roleplay Staff application!
+              Once you start the application, you will have 1 hour to complete it.
+              AI is not permitted on this examination. Plagiarism and AI generation are checked.
+            </p>
+            <button id="startApplicationButton" class="button primary" type="button">Start Application!</button>
+          </div>
+        </section>
+
+        <section id="applicationExpired" class="application-content hidden">
+          <div class="panel">
+            <h2>Sorry, you have expired from this session. Please try again later.</h2>
+          </div>
+        </section>
+
+        <section id="applicationFormWrap" class="application-content hidden">
+          <form id="applicationForm" class="panel application-form">
+            <div class="timer">Time remaining: <strong id="applicationTimer">60:00</strong></div>
+
+            <fieldset class="application-step active" data-step="0">
+              <h2>Basic Information</h2>
+              <label>How old are you <input name="age" type="number" min="1" required></label>
+              <label>Whats your Roblox username <input name="roblox" type="text" required></label>
+              <label>Whats your discord username <input name="discord" type="text" required></label>
+            </fieldset>
+
+            <fieldset class="application-step" data-step="1">
+              <h2>Self Esteem Check</h2>
+              <label>How would you personally rate your SPaG <select name="spag" required></select></label>
+              <label>How good are you at being professional <select name="professional" required></select></label>
+              <label>How Active are you? <select name="active" required></select></label>
+              <label>Rate your attitude <select name="attitude" required></select></label>
+            </fieldset>
+
+            <fieldset class="application-step" data-step="2">
+              <h2>Game Knowledge</h2>
+              <p class="form-note">Use 2+ sentences.</p>
+              <label>What is FRP? Give an example <textarea name="frp" rows="4" required></textarea></label>
+              <label>What is RDM? Give an Example <textarea name="rdm" rows="4" required></textarea></label>
+              <label>What is VDM? Give an Example <textarea name="vdm" rows="4" required></textarea></label>
+              <label>What is NLR? Give an Example <textarea name="nlr" rows="4" required></textarea></label>
+              <label>What is TA? Give an Example <textarea name="ta" rows="4" required></textarea></label>
+              <label>What is LTAP? Give an example <textarea name="ltap" rows="4" required></textarea></label>
+              <label>What is RTAP? Give an Example <textarea name="rtap" rows="4" required></textarea></label>
+              <label>What is GTAD? Give an example <textarea name="gtad" rows="4" required></textarea></label>
+            </fieldset>
+
+            <fieldset class="application-step" data-step="3">
+              <h2>Scenarios</h2>
+              <label>You witness an off-duty mod use commands. What do you do? <textarea name="scenario1" rows="4" required></textarea></label>
+              <label>You get RDM'ed while on duty. What do you do? <textarea name="scenario2" rows="4" required></textarea></label>
+              <label>People are accusing you of incorrectly punishing them what do you do? <textarea name="scenario3" rows="4" required></textarea></label>
+              <label>You see heaps of people breaking rules while your off duty what do you do? <textarea name="scenario4" rows="4" required></textarea></label>
+              <label>You see a HR abusing their commands what do you do? <textarea name="scenario5" rows="4" required></textarea></label>
+              <label>You respond to a call, and everyone is dead around you what do you do? <textarea name="scenario6" rows="4" required></textarea></label>
+              <label>Someone is Impersonating Staff what do you do? <textarea name="scenario7" rows="4" required></textarea></label>
+            </fieldset>
+
+            <fieldset class="application-step" data-step="4">
+              <h2>Personal Statement</h2>
+              <label>Personal Statement <textarea name="statement" rows="5" required></textarea></label>
+              <label>Experience <textarea name="experience" rows="5" required></textarea></label>
+              <label>Anything we should know. <textarea name="extra" rows="5"></textarea></label>
+            </fieldset>
+
+            <div class="form-actions">
+              <button id="prevApplicationStep" class="button secondary" type="button">Back</button>
+              <button id="nextApplicationStep" class="button primary" type="button">Next</button>
+              <button id="submitApplicationButton" class="button primary hidden" type="submit">Submit</button>
+            </div>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
